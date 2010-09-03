@@ -22,10 +22,11 @@
     <name>atlassian-jira-rest-java-client</name>
     <!--url>http://maven.apache.org</url-->
 
+    <!-- if you take these changes then scm needs to point to JRJC/trunk -->
     <scm>
-        <connection>scm:svn:http://svn.atlassian.com/svn/public/atlassian/jira/plugins/jira-plugin-base/trunk</connection>
-        <developerConnection>scm:svn:https://svn.atlassian.com/svn/public/atlassian/jira/plugins/jira-plugin-base/trunk</developerConnection>
-        <url>http://svn.atlassian.com/fisheye/browse/public/atlassian/jira/plugins/jira-plugin-base/trunk</url>
+        <connection>scm:svn:http://studio.atlassian.com/svn/JRJC/branches/bryceIntegration-branch</connection>
+        <developerConnection>scm:svn:https://studio.atlassian.com/svn/JRJC/branches/bryceIntegration-branch</developerConnection>
+        <url>https://studio.atlassian.com/svn/JRJC/branches/bryceIntegration-branch</url>
     </scm>    
 
     <properties>
@@ -57,7 +58,12 @@
                     <forkMode>once</forkMode>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+            </plugin>            
         </plugins>
+
     </build>
     <dependencies>
         <dependency>

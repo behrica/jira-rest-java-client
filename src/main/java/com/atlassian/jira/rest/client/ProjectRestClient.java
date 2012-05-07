@@ -19,7 +19,9 @@ package com.atlassian.jira.rest.client;
 import com.atlassian.jira.rest.client.domain.BasicProject;
 import com.atlassian.jira.rest.client.domain.Project;
 
+import javax.management.relation.Role;
 import java.net.URI;
+import java.util.Map;
 
 /**
  * The client handling project resources.
@@ -60,5 +62,8 @@ public interface ProjectRestClient {
 	 * @param progressMonitor progress monitor
 	 */
 	Iterable<BasicProject> getAllProjects(ProgressMonitor progressMonitor);
+
+
+    Map<String, Iterable<com.atlassian.jira.rest.client.domain.Role>> getProjectRoles(String key);
 
 }

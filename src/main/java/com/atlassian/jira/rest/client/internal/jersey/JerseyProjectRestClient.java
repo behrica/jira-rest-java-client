@@ -16,20 +16,20 @@
 
 package com.atlassian.jira.rest.client.internal.jersey;
 
+import com.atlassian.jira.rest.client.NullProgressMonitor;
 import com.atlassian.jira.rest.client.ProgressMonitor;
 import com.atlassian.jira.rest.client.ProjectRestClient;
 import com.atlassian.jira.rest.client.domain.BasicProject;
 import com.atlassian.jira.rest.client.domain.Project;
-import com.atlassian.jira.rest.client.internal.json.BasicProjectsJsonParser;
-import com.atlassian.jira.rest.client.internal.json.JsonParser;
-import com.atlassian.jira.rest.client.internal.json.ProjectJsonParser;
+import com.atlassian.jira.rest.client.domain.Role;
+import com.atlassian.jira.rest.client.internal.json.*;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.client.apache.ApacheHttpClient;
-import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 /**
@@ -70,4 +70,23 @@ public class JerseyProjectRestClient extends AbstractJerseyRestClient implements
 		final URI uri = UriBuilder.fromUri(baseUri).path(PROJECT_URI_PREFIX).build();
 		return getAndParse(uri, basicProjectsJsonParser, progressMonitor);
 	}
+
+    @Override
+    public Map<String,Iterable<Role>> getProjectRoles(String key) {
+        final URI uri = UriBuilder.fromUri(baseUri).path(PROJECT_URI_PREFIX).path(key).path("role").build();
+
+        Map<String,Iterable<Role>> roleRoleMap = new HashMap<String, Iterable<Role>>();
+        Map<String,String> roleSelfMap=getAndParse(uri, new ProjectRolesJsonParser(),new NullProgressMonitor());
+
+        for (String role : roleSelfMap.keySet()) {
+            URI roleURI=UriBuilder.fromUri(roleSelfMap.get(role)).build();
+             roleRoleMap.put(role,getActors(roleURI, new NullProgressMonitor()));
+        }
+        return roleRoleMap;
+    }
+
+    private List<Role> getActors(URI roleUri, final ProgressMonitor progressMonitor) {
+        return getAndParse(roleUri, new RoleJsonParser(), progressMonitor);
+    }
+
 }

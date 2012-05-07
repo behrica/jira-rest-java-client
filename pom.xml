@@ -9,7 +9,7 @@
 
 	<groupId>com.atlassian.jira</groupId>
 	<artifactId>jira-rest-java-client</artifactId>
-	<version>0.5</version>
+	<version>0.5-EFSA-1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>atlassian-jira-rest-java-client</name>
@@ -61,6 +61,7 @@
 			</testResource>
 		</testResources>
 		<plugins>
+<!--
 			<plugin>
 				<groupId>com.atlassian.maven.plugins</groupId>
 				<artifactId>maven-jira-plugin</artifactId>
@@ -68,7 +69,6 @@
 				<configuration>
 					<productVersion>${jira.version}</productVersion>
 					<productDataVersion>${jira.data.version}</productDataVersion>
-					<!--<restVersion>4.2-SNAPSHOT</restVersion>-->
 				</configuration>
 				<executions>
 					<execution>
@@ -80,6 +80,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

@@ -14,7 +14,9 @@ public class JiraRolesSpike{
 
         JiraRestClient jiraRestClient=new JerseyJiraRestClientFactory().createWithBasicHttpAuthentication(new URI("https://efsajira.jira.com"), name, password);
         ProjectRestClient projectRestClient=jiraRestClient.getProjectClient();
-        final Map<String,Iterable<Role>> essRoles = projectRestClient.getProjectRoles("RAW");
+        final Map<String,Role> rawRoles = projectRestClient.getProjectRoles("RAW");
+        System.out.println(" raw-admin role = " + rawRoles.get("Administrators"));
+        final Map<String,Role> essRoles = projectRestClient.getProjectRoles("ESS");
         System.out.println(" ess-admin role = " + essRoles.get("Administrators"));
 
     }

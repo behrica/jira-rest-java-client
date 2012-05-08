@@ -9,21 +9,20 @@ import org.codehaus.jettison.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleJsonParser implements JsonParser<List<Role>> {
+public class RoleJsonParser implements JsonParser<Role> {
     @Override
-    public List<Role> parse(JSONObject json) throws JSONException {
-        List<Role> roles=new ArrayList<Role>();
+    public Role parse(JSONObject json) throws JSONException {
         JSONArray actorArray=json.getJSONArray("actors");
         List<Actor> actors=new ArrayList<Actor>();
         for (int i=0;i<actorArray.length();i++) {
             JSONObject actorObject=actorArray.getJSONObject(i);
+            Actor.ActorType actorType = Actor.ActorType.fromString(actorObject.getString("type"));
             actors.add(new Actor(actorObject.getString("id"),
                     actorObject.getString("displayName"),
-                    actorObject.getString("name")));
+                    actorObject.getString("name"), actorType));
         }
-        roles.add(new Role(json.getString("name"),
+        return new Role(json.getString("name"),
                 json.getString("id"),
-                actors));
-        return roles;
+                actors);
     }
 }

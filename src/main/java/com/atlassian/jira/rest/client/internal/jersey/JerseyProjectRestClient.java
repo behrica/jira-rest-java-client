@@ -72,10 +72,10 @@ public class JerseyProjectRestClient extends AbstractJerseyRestClient implements
 	}
 
     @Override
-    public Map<String,Iterable<Role>> getProjectRoles(String key) {
+    public Map<String,Role> getProjectRoles(String key) {
         final URI uri = UriBuilder.fromUri(baseUri).path(PROJECT_URI_PREFIX).path(key).path("role").build();
 
-        Map<String,Iterable<Role>> roleRoleMap = new HashMap<String, Iterable<Role>>();
+        Map<String,Role> roleRoleMap = new HashMap<String, Role>();
         Map<String,String> roleSelfMap=getAndParse(uri, new ProjectRolesJsonParser(),new NullProgressMonitor());
 
         for (String role : roleSelfMap.keySet()) {
@@ -85,7 +85,7 @@ public class JerseyProjectRestClient extends AbstractJerseyRestClient implements
         return roleRoleMap;
     }
 
-    private List<Role> getActors(URI roleUri, final ProgressMonitor progressMonitor) {
+    private Role getActors(URI roleUri, final ProgressMonitor progressMonitor) {
         return getAndParse(roleUri, new RoleJsonParser(), progressMonitor);
     }
 

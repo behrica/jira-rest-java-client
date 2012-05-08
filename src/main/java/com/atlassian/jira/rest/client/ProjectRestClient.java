@@ -19,7 +19,6 @@ package com.atlassian.jira.rest.client;
 import com.atlassian.jira.rest.client.domain.BasicProject;
 import com.atlassian.jira.rest.client.domain.Project;
 
-import javax.management.relation.Role;
 import java.net.URI;
 import java.util.Map;
 
@@ -64,6 +63,6 @@ public interface ProjectRestClient {
 	Iterable<BasicProject> getAllProjects(ProgressMonitor progressMonitor);
 
 
-    Map<String, Iterable<com.atlassian.jira.rest.client.domain.Role>> getProjectRoles(String key);
+    Map<String, com.atlassian.jira.rest.client.domain.Role> getProjectRoles(String key);
 
 }

@@ -36,9 +36,8 @@
 		<url>http://atlassian.com/</url>
 	</organization>
 	<scm>
-		<connection>scm:svn:https://studio.atlassian.com/svn/JRJC/tags/jira-rest-java-client-0.5</connection>
-		<developerConnection>scm:svn:https://studio.atlassian.com/svn/JRJC/tags/jira-rest-java-client-0.5
-		</developerConnection>
+		<connection>scm:git:ssh://github.com/behrica/jira-rest-java-client.git</connection>
+		<developerConnection>scm:git:ssh://github.com/behrica/jira-rest-java-client.git</developerConnection>
 		<url>https://studio.atlassian.com/svn/JRJC/tags/jira-rest-java-client-0.5</url>
 	</scm>
 

@@ -9,7 +9,7 @@
 
 	<groupId>com.atlassian.jira</groupId>
 	<artifactId>jira-rest-java-client</artifactId>
-	<version>0.5-EFSA-1-SNAPSHOT</version>
+	<version>0.5-EFSA-1</version>
 	<packaging>jar</packaging>
 
 	<name>atlassian-jira-rest-java-client</name>
